@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('part/header') %>
+    </head>
+  <body>
+    <form action="/form_receiver" method="post">
+        <p><input type="text" name="title" id=""></p>
+        <p><textarea name="description" id="" cols="30" rows="10"></textarea></p>
+        <input type="submit" value="제출">
+    </form>
+    <footer>
+      <%- include('part/footer') %>
+    </footer>
+  </body>
+</html>
