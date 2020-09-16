@@ -5,7 +5,10 @@ var bodyParser = require('body-parser');
 var bkfd2Password = require("pbkdf2-password");
 const { has } = require('underscore');
 var hasher = bkfd2Password();
-// var sha256 = require('sha256');
+// var sha256 = require('sha256'); 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var app = express();
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(session({
@@ -15,6 +18,8 @@ app.use(session({
     store: new FileStore()
     // cookie: { secure: true }
   }))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/count',function(req,res){
     if(req.session.count){
@@ -29,7 +34,7 @@ var users = [
     {
         username:'egoing',
         password:'5815a287aadebb57f72ccf298ce7569fcbaa33e7bc06f4361bb11abc6aa8bf9d',
-        displayName:'Egoing'    
+        displayName:'Egoing'     
     }
 ];
 app.post('/auth/register',function(req,res){
